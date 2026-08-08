@@ -1,0 +1,117 @@
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import 'tailwindcss/utilities.css';
+
+@import 'nativewind/theme';
+
+/* ---------------------------------------------------------------------- */
+/* Design tokens                                                          */
+/* Source of truth also lives in `src/theme.ts` for JS-side usage         */
+/* (Reanimated, StyleSheet). Keep both in sync when a value changes.      */
+/* ---------------------------------------------------------------------- */
+:root {
+  --font-display:
+    Spline Sans, Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  --font-rounded: 'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+
+  /* Surfaces */
+  --color-app-bg: #faf3ec;
+  --color-app-bg-alt: #f3e8dd;
+  --color-app-surface: #ffffff;
+  --color-app-surface-muted: #f5efe8;
+
+  /* Text */
+  --color-app-text: #2b2118;
+  --color-app-text-muted: #8a7c6e;
+  --color-app-text-inverse: #ffffff;
+
+  /* Brand / primary */
+  --color-app-primary: #f4762c;
+  --color-app-primary-dark: #d9601c;
+  --color-app-success: #4caf7d;
+
+  /* Habit accent palette — varied but harmonious */
+  --color-accent-orange: #f4762c;
+  --color-accent-pink: #ef6fa3;
+  --color-accent-purple: #9b7fd4;
+  --color-accent-blue: #4a9de0;
+  --color-accent-green: #5ab98a;
+  --color-accent-yellow: #f0b429;
+
+  /* Mood palette (section 8/9 check-in) */
+  --color-mood-excited: #f4a6c9;
+  --color-mood-joyful: #ef6fa3;
+  --color-mood-grateful: #9b7fd4;
+  --color-mood-energized: #b19cdc;
+  --color-mood-sensitive: #5cc2ea;
+  --color-mood-confused: #3e6fd9;
+  --color-mood-bored: #3a9e6b;
+  --color-mood-stressed: #2f9666;
+  --color-mood-angry: #e0562f;
+  --color-mood-insecure: #f4832c;
+  --color-mood-hurt: #f0b429;
+  --color-mood-guilty: #e0a336;
+}
+
+@media android {
+  :root {
+    --font-mono: monospace;
+    --font-rounded: normal;
+    --font-serif: serif;
+    --font-sans: normal;
+  }
+}
+
+@media ios {
+  :root {
+    --font-mono: ui-monospace;
+    --font-serif: ui-serif;
+    --font-sans: system-ui;
+    --font-rounded: ui-rounded;
+  }
+}
+
+/* Register the tokens above as Tailwind theme colors so className="bg-app-bg" etc. work */
+@layer theme {
+  @theme {
+    --color-app-bg: var(--color-app-bg);
+    --color-app-bg-alt: var(--color-app-bg-alt);
+    --color-app-surface: var(--color-app-surface);
+    --color-app-surface-muted: var(--color-app-surface-muted);
+
+    --color-app-text: var(--color-app-text);
+    --color-app-text-muted: var(--color-app-text-muted);
+    --color-app-text-inverse: var(--color-app-text-inverse);
+
+    --color-app-primary: var(--color-app-primary);
+    --color-app-primary-dark: var(--color-app-primary-dark);
+    --color-app-success: var(--color-app-success);
+
+    --color-accent-orange: var(--color-accent-orange);
+    --color-accent-pink: var(--color-accent-pink);
+    --color-accent-purple: var(--color-accent-purple);
+    --color-accent-blue: var(--color-accent-blue);
+    --color-accent-green: var(--color-accent-green);
+    --color-accent-yellow: var(--color-accent-yellow);
+
+    --color-mood-excited: var(--color-mood-excited);
+    --color-mood-joyful: var(--color-mood-joyful);
+    --color-mood-grateful: var(--color-mood-grateful);
+    --color-mood-energized: var(--color-mood-energized);
+    --color-mood-sensitive: var(--color-mood-sensitive);
+    --color-mood-confused: var(--color-mood-confused);
+    --color-mood-bored: var(--color-mood-bored);
+    --color-mood-stressed: var(--color-mood-stressed);
+    --color-mood-angry: var(--color-mood-angry);
+    --color-mood-insecure: var(--color-mood-insecure);
+    --color-mood-hurt: var(--color-mood-hurt);
+    --color-mood-guilty: var(--color-mood-guilty);
+
+    --font-rounded: var(--font-rounded);
+    --font-display: var(--font-display);
+  }
+}
