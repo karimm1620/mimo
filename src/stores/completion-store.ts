@@ -74,6 +74,13 @@ export const useCompletionStore = create<CompletionStore>((set, get) => ({
     });
   },
 
+  /**
+   * Convenience getters for one-off reads (e.g. inside an event handler).
+   * Do NOT call these from inside a `useCompletionStore(selector)` call — they
+   * allocate a new array every call, which breaks Zustand's snapshot
+   * comparison and causes an infinite re-render loop. Select `state.completions`
+   * (the raw array) and derive with `useMemo` in the component instead.
+   */
   getForDate: (date) => get().completions.filter((c) => c.date === date),
   getForHabit: (habitId) => get().completions.filter((c) => c.habitId === habitId),
 }));

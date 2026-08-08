@@ -12,7 +12,7 @@ type ScreenProps = PropsWithChildren<{
 export function Screen({
   children,
   className,
-  edges = ['top', 'left', 'right'],
+  edges = ['top', 'bottom', 'left', 'right'],
   statusBarStyle = 'dark',
 }: ScreenProps) {
   return (

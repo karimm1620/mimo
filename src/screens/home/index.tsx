@@ -1,5 +1,6 @@
 import { router } from 'expo-router';
 import { Bell, Plus, Settings as SettingsIcon } from 'lucide-react-native';
+import { useMemo } from 'react';
 import { FlatList, View } from 'react-native';
 
 import { AppButton } from '@/components/ui/app-button';
@@ -14,15 +15,30 @@ import { todayISODate } from '@/utils/date';
 import { HabitRow } from './components/habit-row';
 
 export function Home() {
-  const habits = useHabitStore((state) => state.habits.filter((habit) => !habit.archivedAt));
+  // Select the raw, stable arrays from the store — NOT a derived
+  // `.filter()`/`.map()` result. Zustand compares the selector's return
+  // value with `Object.is` by default; a `.filter()` inside the selector
+  // allocates a brand-new array on every single render, so the comparison
+  // never passes and React re-renders forever ("Maximum update depth
+  // exceeded"). Derive filtered/computed values with `useMemo` instead, keyed
+  // off the raw array so it's stable across renders where the data hasn't
+  // actually changed.
+  const allHabits = useHabitStore((state) => state.habits);
+  const allCompletions = useCompletionStore((state) => state.completions);
   const toggleCompletion = useCompletionStore((state) => state.toggleCompletion);
-  const completionsToday = useCompletionStore((state) => state.getForDate(todayISODate()));
+
+  const habits = useMemo(() => allHabits.filter((habit) => !habit.archivedAt), [allHabits]);
+
+  const today = todayISODate();
+  const completionsToday = useMemo(
+    () => allCompletions.filter((completion) => completion.date === today),
+    [allCompletions, today]
+  );
 
   const isCompleted = (habitId: string) =>
     completionsToday.some((c) => c.habitId === habitId && c.completed);
 
-  const today = new Date();
-  const dateLabel = today.toLocaleDateString(undefined, {
+  const dateLabel = new Date().toLocaleDateString(undefined, {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
