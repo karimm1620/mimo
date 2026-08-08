@@ -92,7 +92,7 @@ export function BottomSheet({
         <GestureDetector gesture={panGesture}>
           <Animated.View
             style={[sheetStyle, { maxHeight: sheetHeight, paddingBottom: insets.bottom + 16 }]}
-            className="rounded-t-[32px] bg-app-surface"
+            className="rounded-t-4xl bg-app-surface"
           >
             <BottomSheetHandle />
             {children}
