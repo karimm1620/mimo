@@ -2,7 +2,7 @@
   "name": "mimo",
   "main": "expo-router/entry",
   "version": "1.0.0",
-    "scripts": {
+  "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",
@@ -16,6 +16,7 @@
     "clsx": "^2.1.1",
     "expo": "~57.0.11",
     "expo-constants": "~57.0.9",
+    "expo-dev-client": "~57.0.10",
     "expo-device": "~57.0.1",
     "expo-font": "~57.0.1",
     "expo-glass-effect": "~57.0.1",
