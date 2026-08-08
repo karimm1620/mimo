@@ -2,6 +2,7 @@ import { router } from 'expo-router';
 import { Bell, Plus, Settings as SettingsIcon } from 'lucide-react-native';
 import { useMemo } from 'react';
 import { FlatList, View } from 'react-native';
+import { FadeInDown } from 'react-native-reanimated';
 
 import { AppButton } from '@/components/ui/app-button';
 import { AppCard } from '@/components/ui/app-card';
@@ -54,13 +55,13 @@ export function Home() {
           </AppText>
         </View>
         <IconButton onPress={() => router.push('/settings')} accessibilityLabel="Settings">
-          <SettingsIcon size={20} color="#2b2118" />
+          <SettingsIcon size={20} color="#302d2a" />
         </IconButton>
       </View>
 
-      <AppCard className="mt-5 flex-row items-center gap-4 bg-app-primary/10">
-        <View className="h-11 w-11 items-center justify-center rounded-full bg-app-primary/15">
-          <Bell size={20} color="#f4762c" />
+      <AppCard className="mt-5 flex-row items-center gap-4 bg-app-surface-peach">
+        <View className="h-11 w-11 items-center justify-center rounded-full bg-peach-400/40">
+          <Bell size={20} color="#e58c5e" />
         </View>
         <View className="flex-1">
           <AppText variant="label" className="font-semibold">
@@ -98,6 +99,8 @@ export function Home() {
                 completed={isCompleted(item.id)}
                 onToggle={() => toggleCompletion(item.id)}
                 onPress={() => router.push(`/habits/${item.id}`)}
+                onEdit={() => router.push(`/habits/edit?id=${item.id}`)}
+                entering={FadeInDown.springify().damping(16)}
               />
             )}
           />

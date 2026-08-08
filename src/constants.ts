@@ -13,19 +13,13 @@ export const WEEKDAY_FULL_NAMES = [
   'Sunday',
 ] as const;
 
+/** Five-point positive→rough scale — colors.md §09. */
 export const MOOD_OPTIONS: { type: MoodType; label: string }[] = [
-  { type: 'excited', label: 'Excited' },
-  { type: 'joyful', label: 'Joyful' },
-  { type: 'grateful', label: 'Grateful' },
-  { type: 'energized', label: 'Energized' },
-  { type: 'sensitive', label: 'Sensitive' },
-  { type: 'confused', label: 'Confused' },
-  { type: 'bored', label: 'Bored' },
-  { type: 'stressed', label: 'Stressed' },
-  { type: 'angry', label: 'Angry' },
-  { type: 'insecure', label: 'Insecure' },
-  { type: 'hurt', label: 'Hurt' },
-  { type: 'guilty', label: 'Guilty' },
+  { type: 'great', label: 'Great' },
+  { type: 'good', label: 'Good' },
+  { type: 'okay', label: 'Okay' },
+  { type: 'low', label: 'Low' },
+  { type: 'rough', label: 'Rough' },
 ];
 
 export const TEXTURE_OPTIONS = ['smooth', 'spiky', 'soft', 'bumpy', 'crumbly', 'squishy'] as const;
@@ -33,4 +27,4 @@ export const TEXTURE_OPTIONS = ['smooth', 'spiky', 'soft', 'bumpy', 'crumbly', '
 export type TextureType = (typeof TEXTURE_OPTIONS)[number];
 
 /** Namespace prefix for every AsyncStorage key this app writes. */
-export const STORAGE_NAMESPACE = 'habit-tracker';
+export const STORAGE_NAMESPACE = 'mimo';

@@ -24,7 +24,7 @@ export function ComingSoonScreen({ title, description, showBack = true }: Coming
       {showBack && (
         <View className="flex-row pt-2">
           <IconButton onPress={() => router.back()} accessibilityLabel="Go back">
-            <ChevronLeft size={22} color="#2b2118" />
+            <ChevronLeft size={22} color="#302d2a" />
           </IconButton>
         </View>
       )}

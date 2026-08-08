@@ -39,7 +39,7 @@ export function OnboardingWelcome() {
           value={name}
           onChangeText={setName}
           placeholder="Your name"
-          placeholderTextColor="#8a7c6e"
+          placeholderTextColor="#918a82"
           className="h-14 rounded-2xl border border-app-text-muted/20 bg-app-surface px-4 text-base text-app-text"
         />
         <AppButton label="Get started" onPress={handleContinue} />

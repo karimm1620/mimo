@@ -5,9 +5,8 @@
 @import 'nativewind/theme';
 
 /* ---------------------------------------------------------------------- */
-/* Design tokens                                                          */
-/* Source of truth also lives in `src/theme.ts` for JS-side usage         */
-/* (Reanimated, StyleSheet). Keep both in sync when a value changes.      */
+/* Design tokens — mirrors src/theme.ts. Values come from colors.md       */
+/* (the Mimo color system spec). Keep both files in sync.                 */
 /* ---------------------------------------------------------------------- */
 :root {
   --font-display:
@@ -18,43 +17,71 @@
   --font-rounded: 'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif;
   --font-serif: Georgia, 'Times New Roman', serif;
 
-  /* Surfaces */
-  --color-app-bg: #faf3ec;
-  --color-app-bg-alt: #f3e8dd;
+  /* Surfaces — colors.md §06 */
+  --color-app-bg: #fffdf7;
+  --color-app-bg-alt: #fff8ea;
   --color-app-surface: #ffffff;
-  --color-app-surface-muted: #f5efe8;
+  --color-app-surface-muted: #fff8ea;
+  --color-app-surface-green: #eaf7ef;
+  --color-app-surface-peach: #fff0e4;
+  --color-app-surface-lavender: #f0ecfa;
+  --color-app-surface-blue: #eaf5fb;
 
-  /* Text */
-  --color-app-text: #2b2118;
-  --color-app-text-muted: #8a7c6e;
+  /* Text — colors.md §02 (never pure black) */
+  --color-app-text: #302d2a;
+  --color-app-text-secondary: #625c56;
+  --color-app-text-muted: #918a82;
+  --color-app-text-disabled: #c9c2b9;
   --color-app-text-inverse: #ffffff;
 
-  /* Brand / primary */
-  --color-app-primary: #f4762c;
-  --color-app-primary-dark: #d9601c;
-  --color-app-success: #4caf7d;
+  /* Brand — colors.md §03. Mimo green is the primary identity color. */
+  --color-app-primary: #7fc9a8;
+  --color-app-primary-pressed: #62ae8d;
+  --color-app-primary-highlight: #9ad8bc;
 
-  /* Habit accent palette — varied but harmonious */
-  --color-accent-orange: #f4762c;
-  --color-accent-pink: #ef6fa3;
-  --color-accent-purple: #9b7fd4;
-  --color-accent-blue: #4a9de0;
-  --color-accent-green: #5ab98a;
-  --color-accent-yellow: #f0b429;
+  /* Semantic — colors.md §05 */
+  --color-app-success: #62ae8d;
+  --color-app-success-soft: #ddf2e7;
+  --color-app-warning: #e5a85e;
+  --color-app-warning-soft: #fbe8c8;
+  --color-app-error: #d97979;
+  --color-app-error-soft: #f7dada;
+  --color-app-info: #6faacb;
+  --color-app-info-soft: #dceef7;
 
-  /* Mood palette (section 8/9 check-in) */
-  --color-mood-excited: #f4a6c9;
-  --color-mood-joyful: #ef6fa3;
-  --color-mood-grateful: #9b7fd4;
-  --color-mood-energized: #b19cdc;
-  --color-mood-sensitive: #5cc2ea;
-  --color-mood-confused: #3e6fd9;
-  --color-mood-bored: #3a9e6b;
-  --color-mood-stressed: #2f9666;
-  --color-mood-angry: #e0562f;
-  --color-mood-insecure: #f4832c;
-  --color-mood-hurt: #f0b429;
-  --color-mood-guilty: #e0a336;
+  --color-app-border: #eee7dc;
+  --color-app-border-warm: #e5dac9;
+
+  /* Accent families — colors.md §04, raw scale for anything that needs a
+     specific step (mood colors, streaks, illustrations). */
+  --color-peach-400: #f7c39c;
+  --color-peach-500: #f4a978;
+  --color-peach-600: #e58c5e;
+  --color-butter-400: #f8e5a4;
+  --color-butter-500: #f5d77a;
+  --color-lavender-400: #d4c9f2;
+  --color-lavender-500: #b9a7e8;
+  --color-sky-400: #b9dff1;
+  --color-sky-500: #91c9e8;
+  --color-rose-400: #f3c1c1;
+  --color-rose-500: #e99a9a;
+
+  /* Habit accents — colors.md §08 */
+  --color-habit-general: #7fc9a8;
+  --color-habit-exercise: #f4a978;
+  --color-habit-reading: #b9a7e8;
+  --color-habit-water: #91c9e8;
+  --color-habit-sleep: #afa7d8;
+  --color-habit-study: #f5d77a;
+  --color-habit-creative: #e9a3b2;
+  --color-habit-outdoor: #8fc5a0;
+
+  /* Mood palette — colors.md §09 */
+  --color-mood-great: #f5d77a;
+  --color-mood-good: #7fc9a8;
+  --color-mood-okay: #91c9e8;
+  --color-mood-low: #b9a7e8;
+  --color-mood-rough: #e99a9a;
 }
 
 @media android {
@@ -82,34 +109,59 @@
     --color-app-bg-alt: var(--color-app-bg-alt);
     --color-app-surface: var(--color-app-surface);
     --color-app-surface-muted: var(--color-app-surface-muted);
+    --color-app-surface-green: var(--color-app-surface-green);
+    --color-app-surface-peach: var(--color-app-surface-peach);
+    --color-app-surface-lavender: var(--color-app-surface-lavender);
+    --color-app-surface-blue: var(--color-app-surface-blue);
 
     --color-app-text: var(--color-app-text);
+    --color-app-text-secondary: var(--color-app-text-secondary);
     --color-app-text-muted: var(--color-app-text-muted);
+    --color-app-text-disabled: var(--color-app-text-disabled);
     --color-app-text-inverse: var(--color-app-text-inverse);
 
     --color-app-primary: var(--color-app-primary);
-    --color-app-primary-dark: var(--color-app-primary-dark);
+    --color-app-primary-pressed: var(--color-app-primary-pressed);
+    --color-app-primary-highlight: var(--color-app-primary-highlight);
+
     --color-app-success: var(--color-app-success);
+    --color-app-success-soft: var(--color-app-success-soft);
+    --color-app-warning: var(--color-app-warning);
+    --color-app-warning-soft: var(--color-app-warning-soft);
+    --color-app-error: var(--color-app-error);
+    --color-app-error-soft: var(--color-app-error-soft);
+    --color-app-info: var(--color-app-info);
+    --color-app-info-soft: var(--color-app-info-soft);
 
-    --color-accent-orange: var(--color-accent-orange);
-    --color-accent-pink: var(--color-accent-pink);
-    --color-accent-purple: var(--color-accent-purple);
-    --color-accent-blue: var(--color-accent-blue);
-    --color-accent-green: var(--color-accent-green);
-    --color-accent-yellow: var(--color-accent-yellow);
+    --color-app-border: var(--color-app-border);
+    --color-app-border-warm: var(--color-app-border-warm);
 
-    --color-mood-excited: var(--color-mood-excited);
-    --color-mood-joyful: var(--color-mood-joyful);
-    --color-mood-grateful: var(--color-mood-grateful);
-    --color-mood-energized: var(--color-mood-energized);
-    --color-mood-sensitive: var(--color-mood-sensitive);
-    --color-mood-confused: var(--color-mood-confused);
-    --color-mood-bored: var(--color-mood-bored);
-    --color-mood-stressed: var(--color-mood-stressed);
-    --color-mood-angry: var(--color-mood-angry);
-    --color-mood-insecure: var(--color-mood-insecure);
-    --color-mood-hurt: var(--color-mood-hurt);
-    --color-mood-guilty: var(--color-mood-guilty);
+    --color-peach-400: var(--color-peach-400);
+    --color-peach-500: var(--color-peach-500);
+    --color-peach-600: var(--color-peach-600);
+    --color-butter-400: var(--color-butter-400);
+    --color-butter-500: var(--color-butter-500);
+    --color-lavender-400: var(--color-lavender-400);
+    --color-lavender-500: var(--color-lavender-500);
+    --color-sky-400: var(--color-sky-400);
+    --color-sky-500: var(--color-sky-500);
+    --color-rose-400: var(--color-rose-400);
+    --color-rose-500: var(--color-rose-500);
+
+    --color-habit-general: var(--color-habit-general);
+    --color-habit-exercise: var(--color-habit-exercise);
+    --color-habit-reading: var(--color-habit-reading);
+    --color-habit-water: var(--color-habit-water);
+    --color-habit-sleep: var(--color-habit-sleep);
+    --color-habit-study: var(--color-habit-study);
+    --color-habit-creative: var(--color-habit-creative);
+    --color-habit-outdoor: var(--color-habit-outdoor);
+
+    --color-mood-great: var(--color-mood-great);
+    --color-mood-good: var(--color-mood-good);
+    --color-mood-okay: var(--color-mood-okay);
+    --color-mood-low: var(--color-mood-low);
+    --color-mood-rough: var(--color-mood-rough);
 
     --font-rounded: var(--font-rounded);
     --font-display: var(--font-display);

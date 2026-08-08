@@ -6,10 +6,11 @@ import { motion } from '@/theme';
 
 const AnimatedRNPressable = Animated.createAnimatedComponent(Pressable);
 
-type AnimatedPressableProps = ComponentProps<typeof Pressable> & {
-  /** How much to shrink on press. Defaults to a subtle 0.98 for large touch targets like cards. */
-  pressedScale?: number;
-};
+type AnimatedPressableProps = ComponentProps<typeof Pressable> &
+  Pick<ComponentProps<typeof Animated.View>, 'entering' | 'exiting' | 'layout'> & {
+    /** How much to shrink on press. Defaults to a subtle 0.98 for large touch targets like cards. */
+    pressedScale?: number;
+  };
 
 export function AnimatedPressable({
   pressedScale = 0.98,

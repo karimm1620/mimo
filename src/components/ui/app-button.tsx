@@ -88,7 +88,7 @@ export function AppButton({
       {...props}
     >
       {loading ? (
-        <ActivityIndicator color={variant === 'primary' ? '#ffffff' : '#f4762c'} />
+        <ActivityIndicator color={variant === 'primary' ? '#ffffff' : '#7fc9a8'} />
       ) : (
         <AppText variant="label" className={cn('font-semibold', VARIANT_TEXT_CLASSES[variant])}>
           {label}
