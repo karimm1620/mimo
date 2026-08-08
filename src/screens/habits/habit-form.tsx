@@ -107,7 +107,7 @@ export function HabitForm({ habitId }: HabitFormProps) {
   );
 
   return (
-    <Screen className="px-5" edges={['top', 'left', 'right']}>
+    <Screen>
       <View className="flex-row items-center justify-between pt-2">
         <AppText variant="title">{isEditing ? 'Edit habit' : 'New habit'}</AppText>
         <IconButton onPress={handleClose} accessibilityLabel="Close">

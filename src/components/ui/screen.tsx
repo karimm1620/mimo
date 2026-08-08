@@ -9,6 +9,11 @@ type ScreenProps = PropsWithChildren<{
   statusBarStyle?: 'light' | 'dark' | 'auto';
 }>;
 
+/**
+ * Standard horizontal margin for every screen — don't add `px-*` in
+ * individual screens, it'll not just be redundant but drift out of sync
+ * (some screens had `px-5`, others `px-6`, before this was centralized).
+ */
 export function Screen({
   children,
   className,
@@ -16,7 +21,15 @@ export function Screen({
   statusBarStyle = 'dark',
 }: ScreenProps) {
   return (
-    <SafeAreaView edges={edges} className={`flex-1 bg-app-bg ${className ?? ''}`}>
+    <SafeAreaView
+      edges={edges}
+      className={`flex-1 bg-app-bg px-6 ${className ?? ''}`}
+      // Explicit `flex: 1` in addition to the className, as a belt-and-suspenders
+      // guarantee — this is a plain RN style prop, immune to any NativeWind/
+      // react-native-css class-resolution edge case (unlike className, which
+      // depends on the build-time class scanner + runtime match).
+      style={{ flex: 1 }}
+    >
       <StatusBar style={statusBarStyle} />
       {children}
     </SafeAreaView>

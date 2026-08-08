@@ -23,7 +23,7 @@ export function OnboardingWelcome() {
   };
 
   return (
-    <Screen className="flex-1 justify-between px-6 pt-16 pb-8">
+    <Screen className="flex-1 justify-between pt-16 pb-8">
       <View className="items-center gap-3">
         <View className="h-24 w-24 rounded-full bg-app-primary/15" />
         <AppText variant="title" className="text-center">

@@ -46,7 +46,7 @@ export function Home() {
   });
 
   return (
-    <Screen className="px-5">
+    <Screen>
       <View className="flex-row items-center justify-between pt-2">
         <View>
           <AppText variant="title">Morning 👋</AppText>
@@ -73,7 +73,7 @@ export function Home() {
         </View>
       </AppCard>
 
-      <View className="mt-6 flex-1">
+      <View className="mt-6 flex-1" style={{ flex: 1 }}>
         <View className="mb-3 flex-row items-center justify-between">
           <AppText variant="heading">Today&apos;s habits</AppText>
           <AppText variant="caption" muted>
@@ -92,6 +92,7 @@ export function Home() {
           <FlatList
             data={habits}
             keyExtractor={(item: Habit) => item.id}
+            style={{ flex: 1 }}
             contentContainerClassName="gap-3 pb-24"
             renderItem={({ item }) => (
               <HabitRow

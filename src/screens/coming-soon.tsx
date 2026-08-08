@@ -20,7 +20,7 @@ type ComingSoonScreenProps = {
  */
 export function ComingSoonScreen({ title, description, showBack = true }: ComingSoonScreenProps) {
   return (
-    <Screen className="px-5">
+    <Screen>
       {showBack && (
         <View className="flex-row pt-2">
           <IconButton onPress={() => router.back()} accessibilityLabel="Go back">
