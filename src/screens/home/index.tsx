@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { Bell, Plus, Settings as SettingsIcon } from 'lucide-react-native';
+import { BarChart3, Bell, Plus, Settings as SettingsIcon } from 'lucide-react-native';
 import { useMemo } from 'react';
 import { FlatList, View } from 'react-native';
 import { FadeInDown } from 'react-native-reanimated';
@@ -54,9 +54,14 @@ export function Home() {
             {dateLabel}
           </AppText>
         </View>
-        <IconButton onPress={() => router.push('/settings')} accessibilityLabel="Settings">
-          <SettingsIcon size={20} color="#302d2a" />
-        </IconButton>
+        <View className="flex-row gap-2">
+          <IconButton onPress={() => router.push('/progress')} accessibilityLabel="Progress">
+            <BarChart3 size={20} color="#302d2a" />
+          </IconButton>
+          <IconButton onPress={() => router.push('/settings')} accessibilityLabel="Settings">
+            <SettingsIcon size={20} color="#302d2a" />
+          </IconButton>
+        </View>
       </View>
 
       <AppCard className="mt-5 flex-row items-center gap-4 bg-app-surface-peach">
