@@ -1,15 +1,24 @@
 import { router } from 'expo-router';
-import { BarChart3, Bell, Plus, Settings as SettingsIcon } from 'lucide-react-native';
+import {
+  BarChart3,
+  ChevronRight,
+  Plus,
+  Settings as SettingsIcon,
+  Smile,
+} from 'lucide-react-native';
 import { useMemo } from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList, Pressable, View } from 'react-native';
 import { FadeInDown } from 'react-native-reanimated';
 
+import { MoodShape } from '@/components/mood/mood-shape';
 import { AppButton } from '@/components/ui/app-button';
 import { AppCard } from '@/components/ui/app-card';
 import { AppText } from '@/components/ui/app-text';
 import { IconButton } from '@/components/ui/icon-button';
 import { Screen } from '@/components/ui/screen';
-import { useCompletionStore, useHabitStore } from '@/stores';
+import { MOOD_OPTIONS } from '@/constants';
+import { useCompletionStore, useHabitStore, useMoodStore } from '@/stores';
+import { moodColors } from '@/theme';
 import type { Habit } from '@/types';
 import { todayISODate } from '@/utils/date';
 
@@ -35,6 +44,9 @@ export function Home() {
     () => allCompletions.filter((completion) => completion.date === today),
     [allCompletions, today]
   );
+
+  const todayMoodEntry = useMoodStore((state) => state.getForDate(today));
+  const todayMoodOption = MOOD_OPTIONS.find((option) => option.type === todayMoodEntry?.mood);
 
   const isCompleted = (habitId: string) =>
     completionsToday.some((c) => c.habitId === habitId && c.completed);
@@ -64,19 +76,43 @@ export function Home() {
         </View>
       </View>
 
-      <AppCard className="mt-5 flex-row items-center gap-4 bg-app-surface-peach">
-        <View className="h-11 w-11 items-center justify-center rounded-full bg-peach-400/40">
-          <Bell size={20} color="#e58c5e" />
-        </View>
-        <View className="flex-1">
-          <AppText variant="label" className="font-semibold">
-            Set a reminder
-          </AppText>
-          <AppText variant="caption" muted>
-            Never miss your daily routine
-          </AppText>
-        </View>
-      </AppCard>
+      <Pressable onPress={() => router.push('/check-in/mood')}>
+        <AppCard className="mt-5 flex-row items-center gap-4 bg-app-surface-lavender">
+          {todayMoodOption ? (
+            <>
+              <MoodShape
+                shape={todayMoodOption.shape}
+                expression={todayMoodOption.expression}
+                color={moodColors[todayMoodOption.type]}
+                size={44}
+              />
+              <View className="flex-1">
+                <AppText variant="label" className="font-semibold">
+                  Feeling {todayMoodOption.label.toLowerCase()} today
+                </AppText>
+                <AppText variant="caption" muted>
+                  Tap to update your check-in
+                </AppText>
+              </View>
+            </>
+          ) : (
+            <>
+              <View className="h-11 w-11 items-center justify-center rounded-full bg-lavender-400/40">
+                <Smile size={20} color="#9b7fd4" />
+              </View>
+              <View className="flex-1">
+                <AppText variant="label" className="font-semibold">
+                  How are you feeling today?
+                </AppText>
+                <AppText variant="caption" muted>
+                  Take a moment to check in
+                </AppText>
+              </View>
+            </>
+          )}
+          <ChevronRight size={18} color="#918A82" />
+        </AppCard>
+      </Pressable>
 
       <View className="mt-6 flex-1" style={{ flex: 1 }}>
         <View className="mb-3 flex-row items-center justify-between">

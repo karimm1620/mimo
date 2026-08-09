@@ -11,6 +11,8 @@ type MoodStore = {
   isLoaded: boolean;
   load: () => Promise<void>;
   checkInToday: (mood: MoodType, texture?: TextureType) => Promise<void>;
+  /** Updates only the texture on today's entry — no-ops if today's mood hasn't been set yet. */
+  setTextureToday: (texture: TextureType) => Promise<void>;
   getForDate: (date: string) => MoodCheckIn | undefined;
 };
 
@@ -41,6 +43,19 @@ export const useMoodStore = create<MoodStore>((set, get) => ({
         ? get().checkIns.map((entry) => (entry.id === updated.id ? updated : entry))
         : [...get().checkIns, updated],
     });
+  },
+
+  setTextureToday: async (texture) => {
+    const date = todayISODate();
+    const existing = get().checkIns.find((entry) => entry.date === date);
+    if (!existing) {
+      console.warn('[mood-store] setTextureToday called with no mood check-in for today yet.');
+      return;
+    }
+
+    const updated: MoodCheckIn = { ...existing, texture };
+    await moodRepository.upsert(updated);
+    set({ checkIns: get().checkIns.map((entry) => (entry.id === updated.id ? updated : entry)) });
   },
 
   getForDate: (date) => get().checkIns.find((entry) => entry.date === date),

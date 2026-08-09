@@ -76,12 +76,20 @@
   --color-habit-creative: #e9a3b2;
   --color-habit-outdoor: #8fc5a0;
 
-  /* Mood palette — colors.md §09 */
-  --color-mood-great: #f5d77a;
-  --color-mood-good: #7fc9a8;
-  --color-mood-okay: #91c9e8;
-  --color-mood-low: #b9a7e8;
-  --color-mood-rough: #e99a9a;
+  /* Mood palette — see theme.ts for the full explanation of why this is 12
+     moods, not the 5-point scale colors.md §09 alone would suggest. */
+  --color-mood-excited: #f3c1c1;
+  --color-mood-joyful: #e99a9a;
+  --color-mood-grateful: #d4c9f2;
+  --color-mood-energized: #b9a7e8;
+  --color-mood-sensitive: #b9dff1;
+  --color-mood-confused: #91c9e8;
+  --color-mood-bored: #9ad8bc;
+  --color-mood-stressed: #62ae8d;
+  --color-mood-angry: #e58c5e;
+  --color-mood-insecure: #f4a978;
+  --color-mood-hurt: #f7c39c;
+  --color-mood-guilty: #f8e5a4;
 }
 
 @media android {
@@ -157,11 +165,18 @@
     --color-habit-creative: var(--color-habit-creative);
     --color-habit-outdoor: var(--color-habit-outdoor);
 
-    --color-mood-great: var(--color-mood-great);
-    --color-mood-good: var(--color-mood-good);
-    --color-mood-okay: var(--color-mood-okay);
-    --color-mood-low: var(--color-mood-low);
-    --color-mood-rough: var(--color-mood-rough);
+    --color-mood-excited: var(--color-mood-excited);
+    --color-mood-joyful: var(--color-mood-joyful);
+    --color-mood-grateful: var(--color-mood-grateful);
+    --color-mood-energized: var(--color-mood-energized);
+    --color-mood-sensitive: var(--color-mood-sensitive);
+    --color-mood-confused: var(--color-mood-confused);
+    --color-mood-bored: var(--color-mood-bored);
+    --color-mood-stressed: var(--color-mood-stressed);
+    --color-mood-angry: var(--color-mood-angry);
+    --color-mood-insecure: var(--color-mood-insecure);
+    --color-mood-hurt: var(--color-mood-hurt);
+    --color-mood-guilty: var(--color-mood-guilty);
 
     --font-rounded: var(--font-rounded);
     --font-display: var(--font-display);

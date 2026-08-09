@@ -101,17 +101,28 @@ export const habitAccentColors = {
 export type HabitAccentColor = keyof typeof habitAccentColors;
 
 /**
- * Mood palette — colors.md §09. A simple five-point positive→rough scale.
- * (Supersedes an earlier 12-emotion concept explored before colors.md
- * existed — nothing shipped depended on the old taxonomy, so this is a
- * clean swap, not a migration.)
+ * Mood palette — the main spec (§8) lists 12 emotions as the mood check-in's
+ * actual taxonomy; `colors.md` §09 only defines a simpler 5-point scale.
+ * Confirmed with the person: use the full 12. Only 5 of these have colors
+ * specified anywhere — the other 7 are picked from the existing palette
+ * families (never a new hex value) to stay inside Mimo's palette per
+ * colors.md's own principle, grouped roughly by emotional valence the same
+ * way the reference mood grid does (pink/purple → positive, blue/green →
+ * neutral, orange/yellow → activated/negative).
  */
 export const moodColors = {
-  great: palette.butter[500],
-  good: palette.mimo[500],
-  okay: palette.sky[500],
-  low: palette.lavender[500],
-  rough: palette.rose[500],
+  excited: palette.rose[400],
+  joyful: palette.rose[500],
+  grateful: palette.lavender[400],
+  energized: palette.lavender[500],
+  sensitive: palette.sky[400],
+  confused: palette.sky[500],
+  bored: palette.mimo[400],
+  stressed: palette.mimo[600],
+  angry: palette.peach[600],
+  insecure: palette.peach[500],
+  hurt: palette.peach[400],
+  guilty: palette.butter[400],
 } as const;
 
 export type MoodType = keyof typeof moodColors;
