@@ -108,10 +108,18 @@ function calculatePerfectDayStreaks(
 }
 
 export function useProgressStats(range: 'week' | 'month', anchor: Date) {
-  const habits = useHabitStore((state) => state.habits.filter((h) => !h.archivedAt));
+  // Select the raw `habits` array (stable reference unless the store
+  // actually mutates), not a `.filter()` result — a `.filter()` inside a
+  // Zustand selector allocates a new array every render, which fails the
+  // default `Object.is` snapshot comparison and causes an infinite render
+  // loop. Same bug, same fix as the Home screen earlier — should have
+  // remembered this while writing a brand-new hook. Filtering now happens
+  // inside the `useMemo` below instead, keyed off the raw array.
+  const allHabits = useHabitStore((state) => state.habits);
   const completions = useCompletionStore((state) => state.completions);
 
   return useMemo(() => {
+    const habits = allHabits.filter((h) => !h.archivedAt);
     const daysInRange = range === 'week' ? 7 : daysInMonth(anchor);
     const rangeStart = range === 'week' ? startOfWeekMonday(anchor) : startOfMonth(anchor);
     const dates = Array.from({ length: daysInRange }, (_, i) => addDays(rangeStart, i));
@@ -147,7 +155,7 @@ export function useProgressStats(range: 'week' | 'month', anchor: Date) {
       currentStreak: current,
       bestStreak: best,
     };
-  }, [habits, completions, range, anchor]);
+  }, [allHabits, completions, range, anchor]);
 }
 
 function startOfWeekMonday(date: Date): Date {
